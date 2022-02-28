@@ -1,0 +1,12 @@
+---
+- name: "Install package tzdata"
+  package:
+    name: tzdata
+    state: present
+  become: true
+
+- name: "Set timezone to {{ timezone }}"
+  timezone:
+    name: "{{ timezone }}"
+  notify: restart crond
+  become: true
